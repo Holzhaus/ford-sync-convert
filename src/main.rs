@@ -119,6 +119,7 @@ fn main() {
     let num_convert_tasks = files_to_convert.len();
     let num_tasks_total = num_copy_tasks + num_convert_tasks;
 
+    info!("Starting convert files...");
     use std::sync::mpsc::channel;
     use threadpool::ThreadPool;
 
@@ -183,6 +184,7 @@ fn main() {
         }
     }
 
+    info!("Starting to copy files...");
     for (i, (input_path, output_path)) in files_to_copy.into_iter().enumerate() {
         let index = i + 1;
         let output_dir = output_path.parent().unwrap();
