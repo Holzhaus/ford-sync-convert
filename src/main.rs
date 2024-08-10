@@ -186,7 +186,7 @@ fn main() {
 
     info!("Starting to copy files...");
     for (i, (input_path, output_path)) in files_to_copy.into_iter().enumerate() {
-        let index = i + 1;
+        let index = i + num_convert_tasks + 1;
         let output_dir = output_path.parent().unwrap();
         std::fs::create_dir_all(output_dir).unwrap();
         let result = std::fs::copy(input_path, &output_path);
