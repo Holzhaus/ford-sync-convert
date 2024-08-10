@@ -72,7 +72,14 @@ fn main() {
                 }
             })
         {
-            let output_audio_path = if input_audio_path.extension().unwrap() == "mp3" {
+            let extension = match input_audio_path.extension() {
+                Some(ext) => ext,
+                None => {
+                    warn!("{}: Failed to determine file extension", input_audio_path.display());
+                    continue
+                },
+            };
+            let output_audio_path = if extension == "mp3" {
                 files_to_copy.push((
                     input_playlist_dir.join(&input_audio_path),
                     args.output_dir.join(&input_audio_path),
